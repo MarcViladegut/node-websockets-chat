@@ -5,8 +5,8 @@ class Usuarios {
         this.personas = []
     }
 
-    agregarPersona(id, nombre, sala) {
-        let persona = { id, nombre, sala }
+    agregarPersona(id, nombre, sala, estado) {
+        let persona = { id, nombre, sala, estado }
 
         this.personas.push(persona)
 
@@ -35,6 +35,19 @@ class Usuarios {
         this.personas = this.personas.filter( persona => persona.id != id)
     
         return personaBorrada
+    }
+
+    cambiarEstado( id, estado ) {
+        for (var i in this.personas) {
+            if(this.personas[i].id == id)
+                this.personas[i].estado = estado
+        }
+
+        return this.getPersona(id)
+    }
+
+    getEstado( id ) {
+        return this.getPersona(id).estado
     }
 
 }
