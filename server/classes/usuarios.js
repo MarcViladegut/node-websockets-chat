@@ -6,7 +6,7 @@ class Usuarios {
     }
 
     agregarPersona(id, nombre) {
-        let persona = { id, persona }
+        let persona = { id, nombre }
 
         this.personas.push(persona)
 
@@ -14,7 +14,7 @@ class Usuarios {
     }
 
     getPersona( id ) {
-        let persona = this.personas.filter(persona => persona.id = id)[0]
+        let persona = this.personas.filter(persona => persona.id === id)[0]
     
         return persona
     }

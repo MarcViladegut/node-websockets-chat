@@ -1,42 +1,54 @@
-const { io } = require('../server');
 
+const { io } = require('../server');
+const {Usuarios} = require('../classes/usuarios')
+const {crearMensaje} = require('../utils/utils')
+
+const usuarios = new Usuarios()
 
 io.on('connection', (client) => {
 
-    console.log('Usuario conectado');
+    client.on('entrarChat', (data, callback) => {
 
-    client.emit('enviarMensaje', {
-        usuario: 'Administrador',
-        mensaje: 'Bienvenido a esta aplicación'
-    });
+        if(!data.nombre) {
+            return callback({
+                error: true,
+                mensaje: 'The name is mandatory'
+            })
+        }
 
+        let personas = usuarios.agregarPersona(client.id, data.nombre)
 
+        client.broadcast.emit('listaPersona', usuarios.getPersonas())
+
+        callback(personas)
+
+    })
+
+    client.on('crearMensaje', (data) => {
+
+        let persona = usuarios.getPersona(client.id)
+
+        let mensaje = crearMensaje( persona.nombre, data.mensaje )
+
+        client.broadcast.emit('crearMensaje', mensaje)
+
+    })
 
     client.on('disconnect', () => {
-        console.log('Usuario desconectado');
-    });
 
-    // Escuchar el cliente
-    client.on('enviarMensaje', (data, callback) => {
+        let personaBorrada = usuarios.borrarPersona( client.id )
 
-        console.log(data);
+        client.broadcast.emit('crearMensaje', crearMensaje('Administrador', `${personaBorrada.nombre} is disconnected`))
+        client.broadcast.emit('listaPersona', usuarios.getPersonas())
+    
+    })
 
-        client.broadcast.emit('enviarMensaje', data);
+    client.on('mensajePrivado', data => {
 
+        let persona = usuarios.getPersona(client.id)
 
-        // if (mensaje.usuario) {
-        //     callback({
-        //         resp: 'TODO SALIO BIEN!'
-        //     });
-
-        // } else {
-        //     callback({
-        //         resp: 'TODO SALIO MAL!!!!!!!!'
-        //     });
-        // }
-
-
-
-    });
+        client.broadcast.to(data.para).emit('mensajePrivado', crearMensaje(persona.nombre, data.mensaje))
+    
+    })
 
 });
