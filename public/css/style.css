@@ -1021,7 +1021,7 @@ File: scss
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05); }
 
 .fix-header .page-wrapper {
-  padding-top: 70px; }
+  padding-top: 0px; }
 
 .fix-header .right-side-panel {
   top: 70px;

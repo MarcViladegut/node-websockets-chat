@@ -6,7 +6,7 @@ const {crearMensaje} = require('../utils/utils')
 const usuarios = new Usuarios()
 
 io.on('connection', (client) => {
-
+    
     client.on('entrarChat', (data, callback) => {
 
         if(!data.nombre || !data.sala) {
@@ -44,7 +44,7 @@ io.on('connection', (client) => {
 
     client.on('disconnect', () => {
         let personaBorrada = usuarios.borrarPersona( client.id )
-
+    
         client.broadcast.to(personaBorrada.sala).emit('crearMensaje', crearMensaje('Administrador2', `${personaBorrada.nombre} is disconnected`))
         client.broadcast.to(personaBorrada.sala).emit('listaPersona', usuarios.getPersonasPorSala(personaBorrada.sala))
     

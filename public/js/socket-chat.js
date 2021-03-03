@@ -13,9 +13,6 @@ var usuario = {
     avatar: sessionStorage.getItem('avatar')
 };
 
-sessionStorage.removeItem('avatar')
-
-
 socket.on('connect', function() {
     console.log('Conectado al servidor');
 
