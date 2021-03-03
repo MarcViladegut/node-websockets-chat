@@ -56,12 +56,14 @@ io.on('connection', (client) => {
     })
 
     client.on('cambiarEstado', (id, callback) => {
-        let persona
-        if(usuarios.getEstado(id) === 'online')
-            persona = usuarios.cambiarEstado(id, 'busy')
-        else
-            persona = usuarios.cambiarEstado(id, 'online')
+        let persona = usuarios.getPersona(id)
         
+        if(client.id == id){
+            if(usuarios.getEstado(id) === 'online')
+                persona = usuarios.cambiarEstado(id, 'busy')
+            else
+                persona = usuarios.cambiarEstado(id, 'online')
+        }
         client.broadcast.to(persona.sala).emit('listaPersona', usuarios.getPersonasPorSala(persona.sala))
     
         callback(usuarios.getPersonasPorSala(persona.sala))
