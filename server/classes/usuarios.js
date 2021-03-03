@@ -5,8 +5,8 @@ class Usuarios {
         this.personas = []
     }
 
-    agregarPersona(id, nombre, sala, estado) {
-        let persona = { id, nombre, sala, estado }
+    agregarPersona(id, nombre, sala, estado, avatar) {
+        let persona = { id, nombre, sala, estado, avatar }
 
         this.personas.push(persona)
 
@@ -48,6 +48,10 @@ class Usuarios {
 
     getEstado( id ) {
         return this.getPersona(id).estado
+    }
+
+    getAvatar ( id ) {
+        return this.getPersona(id).avatar
     }
 
 }

@@ -47,7 +47,7 @@
             <div class="login-box card rounded mb-50">
                 <div class="card-body">
                     <form class="form-horizontal form-material" id="loginform" action="chat.html">
-                        <h3 class="box-title m-b-20">Join now</h3>
+                        <h3 class="box-title m-b-20">Information about you</h3>
                         <div class="form-group ">
                             <div class="col-xs-12">
                                 <input class="form-control" type="text" required="" placeholder="Username" name="nombre"> </div>
@@ -56,9 +56,36 @@
                             <div class="col-xs-12">
                                 <input class="form-control" type="text" required="" placeholder="Chat room" name="sala"> </div>
                         </div>
+                        <h3 class="m-b-10">Select an avatar</h3>
+                        <div class="parent-selector">
+                            <div class="select-image">
+                                <div id="divImages" class="list-image form-control">
+                                    <!-- <img class="active" src="https://www.graphicsprings.com/filestorage/stencils/18caf1005c4eedca8b833788e88e53bc.svg" alt="1"/> -->
+                                    <img src="../assets/images/users/1.jpg" alt="1" class="rounded mx-auto"/>
+                                    <img src="../assets/images/users/2.jpg" alt="2" class="rounded mx-auto"/>
+                                    <img src="../assets/images/users/3.jpg" alt="3" class="rounded mx-auto"/>
+                                    <img src="../assets/images/users/4.jpg" alt="4" class="rounded mx-auto"/>
+                                    <img src="../assets/images/users/5.jpg" alt="5" class="rounded mx-auto"/>
+                                    <img src="../assets/images/users/6.jpg" alt="6" class="rounded mx-auto"/>
+                                    <img src="../assets/images/users/7.jpg" alt="7" class="rounded mx-auto"/>
+                                    <img src="../assets/images/users/8.jpg" alt="8" class="rounded mx-auto"/>
+                                    <img src="../assets/images/users/d1.jpg" alt="9" class="rounded mx-auto"/>
+                                    <img src="../assets/images/users/profile.png" alt="10" class="rounded mx-auto"/>
+                                </div>
+                                <!-- <div class="input-div">
+                                    <input id="text-src" type="text" class="input-text" placeholder="URL de l'image">
+                                    <label class="input-label">URL de l'image</label>
+                                </div>
+                                <div class="button" id="button-confirm"><span>Confirm</span></div> -->
+                            </div>
+                            <!-- <div class="view-image" style="display: none;">
+                              <img src=""/>
+                              <div class="button" id="button-other"><span>Other</span></div>
+                            </div> -->
+                        </div>
 
                         <div class="form-group text-center">
-                            <div class="col-xs-12 p-b-20 p-t-20">
+                            <div class="col-xs-12 p-t-20">
                                 <button class="btn btn-block btn-lg btn-info btn-rounded" type="submit">Sign in chat</button>
                             </div>
                         </div>
@@ -76,6 +103,7 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
     <script src="../assets/plugins/jquery/jquery.min.js"></script>
+    <script src="js/socket-avatar.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="../assets/plugins/bootstrap/js/popper.min.js"></script>
     <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
@@ -88,7 +116,6 @@
             $('[data-toggle="tooltip"]').tooltip()
         });
     </script>
-
 </body>
 
 </html>

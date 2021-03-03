@@ -2,16 +2,18 @@ var socket = io();
 
 var params = new URLSearchParams(window.location.search);
 
-if (!params.has('nombre') || !params.has('sala')) {
+if (!params.has('nombre') || !params.has('sala') || sessionStorage.length == 0) {
     window.location = 'index.html';
     throw new Error('El nombre y sala son necesarios');
 }
 
 var usuario = {
     nombre: params.get('nombre'),
-    sala: params.get('sala')
+    sala: params.get('sala'),
+    avatar: sessionStorage.getItem('avatar')
 };
 
+sessionStorage.removeItem('avatar')
 
 
 socket.on('connect', function() {

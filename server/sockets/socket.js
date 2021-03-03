@@ -16,9 +16,13 @@ io.on('connection', (client) => {
             })
         }
 
+        // socket.on('sendImage', function(src){
+        //     console.log(src)
+        // })
+
         client.join(data.sala)
 
-        usuarios.agregarPersona(client.id, data.nombre, data.sala, 'online')
+        usuarios.agregarPersona(client.id, data.nombre, data.sala, 'online', data.avatar)
 
         client.broadcast.to(data.sala).emit('crearMensaje', crearMensaje('Administrador1', `${data.nombre} is connected`))
         client.broadcast.to(data.sala).emit('listaPersona', usuarios.getPersonasPorSala(data.sala))
@@ -39,7 +43,6 @@ io.on('connection', (client) => {
     })
 
     client.on('disconnect', () => {
-
         let personaBorrada = usuarios.borrarPersona( client.id )
 
         client.broadcast.to(personaBorrada.sala).emit('crearMensaje', crearMensaje('Administrador2', `${personaBorrada.nombre} is disconnected`))

@@ -10,6 +10,7 @@ var txtMensaje = $('#txtMensaje')
 var divChatbox = $('#divChatbox')
 var divChatTitle = $('#divChatTitle')
 
+
 function renderizarUsuarios (personas) {
     console.log(personas)
 
@@ -23,16 +24,16 @@ function renderizarUsuarios (personas) {
         html += '<li>'
         switch (personas[i].estado) {
             case 'online':
-                html += '    <a data-id="' + personas[i].id + '" href="javascript:void(0)"><img src="assets/images/users/1.jpg" alt="user-img" class="img-circle"> <span>' + personas[i].nombre + '<small class="text-success">' + personas[i].estado + '</small></span></a>'
+                html += '    <a data-id="' + personas[i].id + '" href="javascript:void(0)"><img src="' + personas[i].avatar + '" alt="user-img" class="img-circle"> <span>' + personas[i].nombre + '<small class="text-success">' + personas[i].estado + '</small></span></a>'
                 break;
             case 'busy':
-                html += '    <a data-id="' + personas[i].id + '" href="javascript:void(0)"><img src="assets/images/users/1.jpg" alt="user-img" class="img-circle"> <span>' + personas[i].nombre + '<small class="text-warning">' + personas[i].estado + '</small></span></a>'
+                html += '    <a data-id="' + personas[i].id + '" href="javascript:void(0)"><img src="' + personas[i].avatar + '" alt="user-img" class="img-circle"> <span>' + personas[i].nombre + '<small class="text-warning">' + personas[i].estado + '</small></span></a>'
                 break;
             case 'offline':
-                html += '    <a data-id="' + personas[i].id + '" href="javascript:void(0)"><img src="assets/images/users/1.jpg" alt="user-img" class="img-circle"> <span>' + personas[i].nombre + '<small class="text-danger">' + personas[i].estado + '</small></span></a>'
+                html += '    <a data-id="' + personas[i].id + '" href="javascript:void(0)"><img src="' + personas[i].avatar + '" alt="user-img" class="img-circle"> <span>' + personas[i].nombre + '<small class="text-danger">' + personas[i].estado + '</small></span></a>'
                 break;
             default:
-                html += '    <a data-id="' + personas[i].id + '" href="javascript:void(0)"><img src="assets/images/users/1.jpg" alt="user-img" class="img-circle"> <span>' + personas[i].nombre + '<small class="text-danger">Unknown</small></span></a>'
+                html += '    <a data-id="' + personas[i].id + '" href="javascript:void(0)"><img src="' + personas[i].avatar + '" alt="user-img" class="img-circle"> <span>' + personas[i].nombre + '<small class="text-danger">Unknown</small></span></a>'
                 break;
         }
               
@@ -128,12 +129,6 @@ divUsuarios.on('click', 'a', function(){
         socket.emit('cambiarEstado', id, function(personas){
             renderizarUsuarios(personas)
         })
-        
-        // var a=$('a[data-id="'+id+'"]')
-        // a.attr('text-success', 'offline')
-        // console.log(a)
-        
-        // divUsuarios.append(a.innerHTML())
     }
 
 })
@@ -156,3 +151,4 @@ formEnviar.on('submit', function(e){
     });
 
 })
+

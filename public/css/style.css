@@ -1003,7 +1003,7 @@ File: scss
   padding: 25px 25px; }
 
 .card {
-  margin-bottom: 30px; }
+  margin-bottom: 0px; }
   .card .card-subtitle {
     font-weight: 300;
     margin-bottom: 15px;
